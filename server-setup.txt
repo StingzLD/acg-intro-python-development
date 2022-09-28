@@ -1,0 +1,35 @@
+sudo -i
+sudo yum update -y
+yum groupinstall -y "development tools"
+yum install -y \
+  libffi-devel \
+  zlib-devel \
+  bzip2-devel \
+  openssl-devel \
+  ncurses-devel \
+  sqlite-devel \
+  readline-devel \
+  tk-devel \
+  gdbm-devel \
+  db4-devel \
+  libpcap-devel \
+  xz-devel \
+  expat-devel \
+  postgresql-devel
+cd /usr/src
+wget http://python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
+tar xf Python-3.7.2.tar.xz
+cd Python-3.7.2
+./configure --enable-optimizations
+make altinstall
+exit
+sudo nano /etc/sudoers
+# ensure that secure_path in /etc/sudoers file includes /usr/local/bin.
+# The line should look something like this:
+# Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+sudo pip3.7 install --upgrade pip
+git config --global user.name "Corey Hastings"
+git config --global user.email "stingzlightingdesign@hotmail.com"
+curl https://raw.githubusercontent.com/linuxacademy/content-intro-to-python-development/master/helpers/bashrc -o ~/.bashrc
+exec $SHELL
+curl https://raw.githubusercontent.com/linuxacademy/content-intro-to-python-development/master/helpers/vimrc -o ~/.vimrc
